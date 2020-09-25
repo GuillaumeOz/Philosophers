@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/25 13:59:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 16:39:47 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ typedef	struct	s_state
 // timestamp_in_ms X is thinking
 // timestamp_in_ms X died
 }				t_state;
+
+typedef enum	e_error
+{
+	MALLOC_TIME,
+
+	NONE,
+}				t_error;
 
 size_t	ft_strlen(char *str);
 

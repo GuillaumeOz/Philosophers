@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:22:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/25 14:16:09 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 16:34:11 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct		s_time
 **	t_time Constructor - Destructor
 */
 
-t_time  *malloc_time(void);
-t_time  create_time(void);
+void	malloc_time(void);
+void	create_time(void);
 void    destroy_time(t_time time);
 void    free_time(t_time *time);
 
@@ -39,8 +39,8 @@ unsigned	long	get_time_start_time();
 unsigned	long	get_time_first_tick();
 unsigned	long	get_time_second_tick();
 
-void						set_time_start_time();
-void						set_time_first_tick();
-void						set_time_second_tick();
+void				set_time_start_time();
+void				set_time_first_tick();
+void				set_time_second_tick();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/25 14:26:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 16:36:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	g_time = malloc_time();
+	malloc_time();
 	if (g_time->error_time == true)
-		return (-1);//ADD enum msg
+		return (MALLOC_TIME);
 	// get_param()
 	if (argc != 5 && argc != 6)
 	{
 		error_msg("Error: Arguments\n");
 		return(0);
 	}
-	get_time();
 	return (0);
 }
