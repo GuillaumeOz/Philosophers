@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/24 18:40:13 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 13:59:19 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <pthread.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <sys/time.h>
 #include <stdio.h>
@@ -51,5 +52,7 @@ typedef	struct	s_state
 }				t_state;
 
 size_t	ft_strlen(char *str);
+
+void	error_msg(char *msg);
 
 #endif

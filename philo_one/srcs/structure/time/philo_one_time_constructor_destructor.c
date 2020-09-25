@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:51:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/24 18:43:01 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:25:18 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ t_time  *malloc_time(void)
 
 	time = (t_time*)malloc(sizeof(t_time));
 	if (time == NULL)
+	{
 		error_msg("Error: malloc_time failed");
-	*time = create_time(0, 0);
+		return(NULL);
+	}
+	*time = create_time();
+	return (time->error_time == false ? time : NULL);
 }
 
-t_time  create_time(unsigned long first_tick, unsigned long second_tick)
+t_time  create_time()
 {
-	struct	timeval	*get_time;
 	t_time			time;
-	int				state;
 
-	state = gettimeofday(&time, NULL);
-	if (state == -1)
-		error_msg("Error: create_time error\n");
-	time.start_time = (get_time->tv_sec * 1000) + (get_time->tv_usec * 1000);
 	time.first_tick = 0;
 	time.second_tick = 0;
+	time.error_time = false;
+	set_time_start_time();
 	return (time);
 }
 

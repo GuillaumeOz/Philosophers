@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:22:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/24 18:47:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:16:09 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct		s_time
 	unsigned long	start_time;
 	unsigned long	first_tick;
 	unsigned long	second_tick;
+	bool			error_time;
 }					t_time;
 
 /*
@@ -25,7 +26,7 @@ typedef struct		s_time
 */
 
 t_time  *malloc_time(void);
-t_time  create_time(unsigned long first_tick, unsigned long second_tick);
+t_time  create_time(void);
 void    destroy_time(t_time time);
 void    free_time(t_time *time);
 
@@ -33,18 +34,13 @@ void    free_time(t_time *time);
 **	t_time Getter - Setter 
 */
 
-// chaque element de la struct
-// return(const t_time start_time);
-const t_time	get_time(); 
+t_time				get_time();
+unsigned	long	get_time_start_time();
+unsigned	long	get_time_first_tick();
+unsigned	long	get_time_second_tick();
 
-// set la structure et/ou les 
-// variables de cette structure
-void	set_time(t_time *time);
-
-/*
-**	t_time Global
-*/
-
-t_time *g_time;
+void						set_time_start_time();
+void						set_time_first_tick();
+void						set_time_second_tick();
 
 #endif

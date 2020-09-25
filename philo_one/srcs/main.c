@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/24 17:57:37 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:26:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 // pthread_mutex_init, pthread_mutex_destroy,
 // pthread_mutex_lock, pthread_mutex_unlock
 
-static	void	error_msg(char *msg)
+t_time *g_time = NULL;
+
+void	error_msg(char *msg)
 {
 	size_t	len;
 
@@ -31,7 +33,10 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	PRINTD(argc)
+	g_time = malloc_time();
+	if (g_time->error_time == true)
+		return (-1);//ADD enum msg
+	// get_param()
 	if (argc != 5 && argc != 6)
 	{
 		error_msg("Error: Arguments\n");
