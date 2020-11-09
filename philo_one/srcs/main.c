@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/25 16:36:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/09 19:40:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 
 t_time *g_time = NULL;
 
+int		quit_philo(int error_code, t_state *state)
+{
+	if (g_time != NULL)
+		free_time(g_time);
+	if (state != NULL)
+		free_state(state);
+	return (error_code);
+}
+
 void	error_msg(char *msg)
 {
 	size_t	len;
@@ -30,17 +39,13 @@ void	error_msg(char *msg)
 int main(int argc, char **argv)
 {
 	//pthread_t   thread0;
+	t_state		*state;
 
-	(void)argc;
-	(void)argv;
 	malloc_time();
 	if (g_time->error_time == true)
-		return (MALLOC_TIME);
-	// get_param()
-	if (argc != 5 && argc != 6)
-	{
-		error_msg("Error: Arguments\n");
-		return(0);
-	}
+		return (quit(ERROR_TIME, NULL));
+	state = malloc_state(argc, argv);
+	if (state->error_state == true)
+		return (quit(ERROR_STATE, state));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:51:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/25 16:38:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:42:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	malloc_time(void)
 	{
 		error_msg("Error: malloc_time failed");
 		g_time->error_time = true;
+		return ;
 	}
 	create_time();
 }
