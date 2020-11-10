@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/09 19:49:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/10 17:09:29 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 #include <string.h>
+#include <inttypes.h>
 
 #include "philo_one_time.h"
 #include "philo_one_state.h"
@@ -60,9 +61,11 @@ typedef enum	e_error
 	NONE,
 }				t_error;
 
-size_t	ft_strlen(char *str);
+void			error_msg(char *msg);
+int				quit_philo(int error_code, t_state *state);
 
-void	error_msg(char *msg);
-int		quit_philo(int error_code, t_state *state);
+size_t			ft_strlen(char *str);
+int				ft_atoi_philo(char *str, t_state *state);
+bool			ft_is_digit(char c);
 
 #endif

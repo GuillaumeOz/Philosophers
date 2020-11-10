@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/09 19:54:36 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:56:59 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_state	*malloc_state(int argc, char **argv)
 	{
 		error_msg("Error: malloc_state failed");
 		state->error_state = true;
-		return ;
+		return (state);
 	}
 	*state = create_state(argc, argv);
 	return (state);
@@ -45,12 +45,12 @@ t_state	create_state(int argc, char **argv)
 	memset(&state, 0, sizeof(t_state));
 	if (argc == 5 || argc == 6)
 	{
-		parse_philo(argv[1]);
-		parse_time_to_die(argv[2]);
-		parse_time_to_eat(argv[3]);
-		parse_time_to_sleep(argv[4]);
+		parse_philo(argv[1], &state);
+		parse_time_to_die(argv[2], &state);
+		parse_time_to_eat(argv[3], &state);
+		parse_time_to_sleep(argv[4], &state);
 		if (argc == 6)
-			parse_nb_time_to_eat(argv[5]);
+			parse_nb_time_to_eat(argv[5], &state);
 	}
 	else
 	{
@@ -62,7 +62,7 @@ t_state	create_state(int argc, char **argv)
 
 void    destroy_state(t_state state)
 {
-
+	memset(&state, 0, sizeof(state));
 }
 
 void    free_state(t_state *state)

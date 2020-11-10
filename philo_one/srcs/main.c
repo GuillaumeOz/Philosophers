@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/09 19:40:21 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:57:59 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	error_msg(char *msg)
 
 	len = ft_strlen(msg);
 	write(1, msg, len);
+	write(1, "\n", 1);
 }
 
 int main(int argc, char **argv)
@@ -47,5 +48,6 @@ int main(int argc, char **argv)
 	state = malloc_state(argc, argv);
 	if (state->error_state == true)
 		return (quit(ERROR_STATE, state));
+	// routine();
 	return (0);
 }
