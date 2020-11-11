@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 17:50:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/10 18:43:28 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/10 19:12:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int	get_state_nb_philo_fork(t_state *state, t_state_option option)
 {
-	if (option == PHILO)
-		return (state->nb_philo);
-	if (option == FORK)
-		return (state->nb_fork);
+	return (option == FORK ? state->nb_fork : state->nb_philo);
 }
 
 int	get_state_time_to_die(t_state *state)

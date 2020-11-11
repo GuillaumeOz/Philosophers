@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/10 16:56:59 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/11 11:51:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_state	*malloc_state(int argc, char **argv)
 {
 	t_state *state;
 
-	state = (t_state*)malloc(sizeof(state));
+	state = (t_state*)malloc(sizeof(t_state));
 	if (state == NULL)
 	{
 		error_msg("Error: malloc_state failed");
@@ -26,17 +26,6 @@ t_state	*malloc_state(int argc, char **argv)
 	*state = create_state(argc, argv);
 	return (state);
 }
-
-// typedef	struct s_state
-// {
-// 	int		nb_philo;
-// 	int		nb_fork;
-// 	int		time_to_die;
-// 	int		time_to_eat;
-// 	int		time_to_sleep;
-// 	int		nb_time_to_eat;
-// 	bool	error_state;
-// }				t_state;
 
 t_state	create_state(int argc, char **argv)
 {

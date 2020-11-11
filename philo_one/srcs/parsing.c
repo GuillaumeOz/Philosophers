@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:12:46 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/10 19:07:21 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/11 12:09:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,23 +114,23 @@ void	parse_nb_time_to_eat(char *arg, t_state *state)
 	int	nb_time_to_eat;
 	int	i;
 
-	i = -1;
-	if (arg[0] != '[' && arg[(size_t)ft_strlen(arg)] != ']')
+	i = 0;
+	if (arg[0] != '[' || arg[(size_t)ft_strlen(arg) - 1] != ']')
 	{
 		error_msg("'[' or ']' is missing around number time to eat");
 		state->error_state = true;
 		return ;
 	}
-	while (arg[++i])
+	while (arg[++i] && i < (int)(ft_strlen(arg) - 1))
 		if (ft_is_digit(arg[i]) == false)
 		{
-			error_msg("Forbidden char detected in nb time to eat");
+			error_msg("Forbidden char detected in number time to eat");
 			state->error_state = true;
 			return ;
 		}
 	if (ft_strlen(arg) > 9)
 	{
-		error_msg("Nb time to eat is too big");
+		error_msg("Number time to eat is too big");
 		state->error_state = true;
 		return ;
 	}
