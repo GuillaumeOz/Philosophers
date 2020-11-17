@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 19:45:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/17 22:03:02 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 // pthread_mutex_init, pthread_mutex_destroy,
 // pthread_mutex_lock, pthread_mutex_unlock
 
-int		quit_philo(int error_code, t_time *time, t_state *state)
+int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
 	if (time != NULL)
 		free_time(time);
 	if (state != NULL)
 		free_state(state);
-	return (error_code);
+	if (philo != NULL)
+		free_philo(philo);
+	return (code);
 }
 
 void	error_msg(char *msg)
@@ -41,17 +43,21 @@ int main(int argc, char **argv)
 {
 	t_state		*state;
 	t_time		*time;
+	t_philo		*philo;
 
 	time = malloc_time();
 	if (time->error_time == true)
-		return (quit_philo(ERROR_TIME, time, NULL));
+		return (quit_philo(ERROR_TIME, time, NULL, NULL));
 	state = malloc_state(argc, argv);
 	if (state->error_state == true)
-		return (quit_philo(ERROR_STATE, time, state));
-	// malloc_philo(g_time, state);
-	routine();
+		return (quit_philo(ERROR_STATE, time, state, NULL));
+	philo = malloc_philo(time, state);
+	if (philo->error_philo == true)
+		return (quit_philo(ERROR_PHILO, time, state, philo));
 
-	quit_philo(ERROR_STATE, time, state);
+	// routine();
+
+	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }
 

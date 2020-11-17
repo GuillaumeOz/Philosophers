@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 19:24:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/17 10:50:29 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@
 
 // DEL THIS PART
 
-
 typedef enum	e_error
 {
 	ERROR_TIME,
 	ERROR_STATE,
+	ERROR_PHILO,
 
 	NONE,
 }				t_error;
 
 void			error_msg(char *msg);
-int				quit_philo(int error_code, t_state *state);
+int				quit_philo(int code, t_time *time, t_state *state,
+					t_philo *philo);
 
 size_t			ft_strlen(char *str);
 int				ft_atoi_philo(char *str, t_state *state);

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:51:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 19:53:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/17 18:28:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_time	*malloc_time(void)
 		time->error_time = true;
 		return ;
 	}
-	create_time();
+	*time = create_time();
+	return (time);
 }
 
 t_time  create_time()

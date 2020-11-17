@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one_philo_setter.c                           :+:      :+:    :+:   */
+/*   philo_one_philo_address_getter.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 19:39:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/17 22:02:12 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/11/17 18:30:27 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/11/17 19:07:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void			set_philo_id(t_philo *philo, int value)
+t_time			*get_philo_time_addr(t_philo *philo)
 {
-	philo->id = value;
+    return (philo->time);
 }
 
-void			set_philo_thread(t_philo *philo)
+t_state			*get_philo_state_addr(t_philo *philo)
 {
-	pthread_mutex_init(philo->fork, NULL);
+    return (philo->state);
 }
 
-void			set_philo_fork(t_philo *philo)
+t_philo			*get_philo_previous_addr(t_philo *philo)
 {
-	pthread_mutex_init(philo->fork, NULL);
+    return (philo->previous);
 }
 
-void			set_philo_died(t_philo *philo)
+t_philo			*get_philo_next_addr(t_philo *philo)
 {
-	philo->died = false;
-}
-
-void			set_philo_error_philo(t_philo *philo)
-{
-	philo->error_philo = false;
+    return (philo->next);
 }
