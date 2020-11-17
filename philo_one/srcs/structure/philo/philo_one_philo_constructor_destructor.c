@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one_state_getter.c                           :+:      :+:    :+:   */
+/*   philo_one_philo_constructor_destructor.c           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 17:50:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 20:37:54 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/11/16 19:39:54 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	get_state_nb_philo_fork(t_state *state, t_state_option option)
+t_philo			*malloc_philo(int argc, char **argv)
 {
-	return (option == FORK ? state->nb_fork : state->nb_philo);
+
 }
 
-int	get_state_time_to_die(t_state *state)
+t_philo			create_philo(int argc, char **argv)
 {
-	return (state->time_to_die);
+
 }
 
-int	get_state_time_to_eat(t_state *state)
+void    		destroy_philo(t_philo state)
 {
-	return (state->time_to_eat);
+
 }
 
-int	get_state_time_to_sleep(t_state *state)
+void    		free_philo(t_philo *state)
 {
-	return (state->time_to_sleep);
+
 }
 
-int	get_state_nb_time_to_eat(t_state *state)
-{
-	return (state->nb_time_to_eat);
-}

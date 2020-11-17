@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:12:46 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/11 12:09:22 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:55:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,13 @@ void	parse_nb_time_to_eat(char *arg, t_state *state)
 			state->error_state = true;
 			return ;
 		}
-	if (ft_strlen(arg) > 9)
+	if (ft_strlen(arg) > 9 || ft_strlen(arg) <= 2)
 	{
-		error_msg("Number time to eat is too big");
+		error_msg("Number time to eat is too big or too short");
 		state->error_state = true;
 		return ;
 	}
-	nb_time_to_eat = ft_atoi_philo(arg, state);
+	nb_time_to_eat = ft_atoi_philo(arg + 1, state);
 	set_state_nb_time_to_eat(state, nb_time_to_eat);
 	return ;
 }

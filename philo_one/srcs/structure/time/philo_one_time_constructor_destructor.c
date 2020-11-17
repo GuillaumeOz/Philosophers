@@ -6,32 +6,34 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:51:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/09 18:42:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/16 19:53:44 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-extern t_time	*g_time;
-
-void	malloc_time(void)
+t_time	*malloc_time(void)
 {
-	g_time = (t_time*)malloc(sizeof(t_time));
-	if (g_time == NULL)
+	t_time	*time;
+
+	time = (t_time*)malloc(sizeof(t_time));
+	if (time == NULL)
 	{
 		error_msg("Error: malloc_time failed");
-		g_time->error_time = true;
+		time->error_time = true;
 		return ;
 	}
 	create_time();
 }
 
-void  create_time()
+t_time  create_time()
 {
-	g_time->first_tick = 0;
-	g_time->second_tick = 0;
-	g_time->error_time = false;
-	set_time_start_time();
+	t_time	time;
+
+	time.first_tick = 0;
+	time.second_tick = 0;
+	time.error_time = false;
+	set_time_start_time(&time);
 }
 
 void    destroy_time(t_time time)

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/10 17:09:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/16 19:24:38 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 #include "philo_one_time.h"
 #include "philo_one_state.h"
+#include "philo_one_philo.h"
 
 // DEL THIS PART
 
@@ -34,24 +35,6 @@
 
 // DEL THIS PART
 
-typedef struct	s_philo
-{
-	int		id; // Philo ID
-
-	bool	fork; // Need this ?
-	bool	eating;
-	bool	sleeping;
-	bool	thinking;
-	bool	died;
-
-	bool	error_philo;
-
-// timestamp_in_ms X has taken a fork
-// timestamp_in_ms X is eating
-// timestamp_in_ms X is sleeping
-// timestamp_in_ms X is thinking
-// timestamp_in_ms X died
-}				t_philo;
 
 typedef enum	e_error
 {
