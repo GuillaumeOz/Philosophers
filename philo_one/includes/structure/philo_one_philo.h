@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:21:21 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/17 22:02:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/19 20:01:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ typedef struct	s_philo
 {
 	int				id;
 	pthread_t		thread;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	fork;
 	bool			died;
 	bool			error_philo;
 	t_time			*time;
@@ -31,7 +31,9 @@ typedef struct	s_philo
 */
 
 t_philo			*malloc_philo(t_time *time, t_state *state);
-t_philo			create_philo(t_time *time, t_state *state, int id);
+void			create_philo(t_philo *philo, t_time *time,
+					t_state *state, int id);
+void			create_philo_link(t_philo *tmp, t_philo *philo);
 void    		destroy_philo(t_philo state);
 void    		free_philo(t_philo *state);
 

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/17 22:03:02 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/19 19:11:45 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 
 int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
+	if (philo != NULL)
+		free_philo(philo);
 	if (time != NULL)
 		free_time(time);
 	if (state != NULL)
 		free_state(state);
-	if (philo != NULL)
-		free_philo(philo);
 	return (code);
 }
 

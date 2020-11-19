@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/17 10:50:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/19 15:44:39 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 
 // DEL THIS PART
 
+# define DEBUG write(1, "ICI\n", 4);
 # define PRINTS(x) printf("%s\n", x);
 # define PRINTC(x) printf("%c\n", x);
 # define PRINTD(x) printf("%d\n", x);
+# define PRINTP(x) printf("%p\n", x);
 # define PRINTLD(x) printf("%ld\n", x);
 
 // DEL THIS PART
@@ -51,5 +53,7 @@ int				quit_philo(int code, t_time *time, t_state *state,
 size_t			ft_strlen(char *str);
 int				ft_atoi_philo(char *str, t_state *state);
 bool			ft_is_digit(char c);
+
+void			*routine(void *param);
 
 #endif

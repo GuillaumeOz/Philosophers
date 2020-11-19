@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 19:24:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/19 17:10:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,20 @@ void *thinking1(void *param)
 	// pthread_mutex_t	*mutex_fork;
 	// pthread_mutex_t mutex_write;
 
-void	routine()
+void	*routine(void *param)
 {
-	pthread_t	philo1;
-	pthread_t	philo2;
+	// pthread_t	philo1;
+	// pthread_t	philo2;
 
-	pthread_create(&philo1, NULL, &thinking1, NULL);
-	pthread_create(&philo2, NULL, &thinking1, NULL);
+	// pthread_create(&philo1, NULL, &thinking1, NULL);
+	// pthread_create(&philo2, NULL, &thinking1, NULL);
+
+	t_philo *philo;
+
+	philo = (t_philo*)param;
+	PRINTS("COUCOU")
+	PRINTD(philo->id)
+	return(NULL);
 
 	// pthread_join(philo1, NULL);
 	// pthread_join(philo2, NULL);
