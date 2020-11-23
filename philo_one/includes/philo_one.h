@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/19 15:44:39 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 19:41:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int				ft_atoi_philo(char *str, t_state *state);
 bool			ft_is_digit(char c);
 
 void			*routine(void *param);
+void			start_philosopher(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:30:27 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/19 14:43:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:20:48 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ t_philo			*get_philo_previous_addr(t_philo *philo)
 t_philo			*get_philo_next_addr(t_philo *philo)
 {
     return (philo->next);
+}
+
+bool 			get_philo_error_philo(t_philo *philo)
+{
+	return (philo->error_philo);
 }

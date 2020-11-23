@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/16 12:13:13 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 19:12:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_state	create_state(int argc, char **argv)
 		parse_time_to_sleep(argv[4], &state);
 		if (argc == 6)
 			parse_nb_time_to_eat(argv[5], &state);
+		else
+			state.nb_time_to_eat = -1;
 	}
 	else
 	{

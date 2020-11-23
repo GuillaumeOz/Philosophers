@@ -6,23 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/19 19:58:33 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 18:49:09 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-static void test(t_philo *first)
-{
-	int		i;
-
-	i = -1;
-	while (++i < 9)
-	{
-		PRINTD(first->id)
-		first = first->next;
-	}
-}
 
 t_philo	*malloc_philo(t_time *time, t_state *state)
 {
@@ -45,39 +33,42 @@ t_philo	*malloc_philo(t_time *time, t_state *state)
 		if (i == 0)
 			first = philo;
 		create_philo(philo, time, state, i + 1);
-		create_philo_link(tmp, philo);
+		create_philo_link(&tmp, philo);
 	}
 	first->previous = philo;
 	philo->next = first;
-	test(first);
 	return (first);
 }
 
-void	create_philo_link(t_philo *tmp, t_philo *philo)
+void	create_philo_link(t_philo **tmp, t_philo *philo)
 {
-	if (tmp == NULL)
+	if (*tmp == NULL)
 	{
-		tmp = philo;
+		*tmp = philo;
 		return ;
 	}
-	tmp->next = philo;
-	philo->previous = tmp;
-	tmp = philo;
+	(*tmp)->next = philo;
+	philo->previous = *tmp;
+	*tmp = philo;
 }
 
 void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 {
 	set_philo_id(philo, id);
-	set_philo_fork(&philo);
+	set_philo_thread(philo);
+	set_philo_fork_mutex(philo);
 	set_philo_died(philo);
 	set_philo_error_philo(philo);
+	philo->nb_eat = 0;
 	philo->time = time;
 	philo->state = state;
 }
 
 void	destroy_philo(t_philo philo)
 {
-	pthread_mutex_destroy(philo.fork);
+	free(philo.thread);
+	pthread_mutex_destroy(philo.fork_mutex);
+	free(philo.fork_mutex);
 }
 
 void	free_philo(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/19 19:11:45 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 20:06:47 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 // pthread_mutex_init, pthread_mutex_destroy,
 // pthread_mutex_lock, pthread_mutex_unlock
+
+bool	g_over = false;
 
 int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
@@ -44,6 +46,7 @@ int main(int argc, char **argv)
 	t_state		*state;
 	t_time		*time;
 	t_philo		*philo;
+	int			i;
 
 	time = malloc_time();
 	if (time->error_time == true)
@@ -54,9 +57,13 @@ int main(int argc, char **argv)
 	philo = malloc_philo(time, state);
 	if (philo->error_philo == true)
 		return (quit_philo(ERROR_PHILO, time, state, philo));
-
-	// routine();
-
+	start_philosopher(philo);
+	i = -1;
+	while (++i < get_state_nb_philo_fork(state, PHILO))
+	{
+		pthread_join(*(philo->thread), NULL);
+		philo = get_philo_next_addr(philo);
+	}
 	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }

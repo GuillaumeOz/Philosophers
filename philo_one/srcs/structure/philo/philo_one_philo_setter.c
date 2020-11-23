@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:39:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/19 19:59:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:23:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,27 @@ void			set_philo_id(t_philo *philo, int value)
 	philo->id = value;
 }
 
-void			set_philo_thread(t_philo philo)
+void			set_philo_thread(t_philo *philo)
 {
-	pthread_create(&(philo.thread), NULL, &routine, &philo);
+	philo->thread = (pthread_t*)malloc(sizeof(pthread_t));
+	if (philo->thread == NULL)
+	{
+		error_msg("Error: set_philo_thread malloc thread failed");
+		philo->error_philo = true;
+		return ;
+	}
 }
 
-void			set_philo_fork(t_philo *philo)
+void			set_philo_fork_mutex(t_philo *philo)
 {
-	pthread_mutex_init(philo->fork, NULL);
+	philo->fork_mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
+	if (philo->fork_mutex == NULL)
+	{
+		error_msg("Error: set_philo_thread malloc thread failed");
+		philo->error_philo = true;
+		return ;
+	}
+	pthread_mutex_init(philo->fork_mutex, NULL);
 }
 
 void			set_philo_died(t_philo *philo)
