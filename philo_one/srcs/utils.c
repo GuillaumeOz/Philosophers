@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 12:18:28 by user42            #+#    #+#             */
-/*   Updated: 2020/11/23 11:39:05 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/24 18:38:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,30 @@ bool		ft_is_digit(char c)
 		return (true);
 	else
 		return (false);
+}
+
+void	ft_putnbr(unsigned long nb)
+{
+	long i;
+
+	i = nb;
+	if (i >= 10)
+	{
+		ft_putnbr(i / 10);
+		ft_putnbr(i % 10);
+	}
+	else
+		write(1, i + '0', 1);
+}
+
+void		ft_philo_msg(t_philo *philo, char *msg)
+{
+	char	buff[100];
+	t_state *state;
+	t_time	*time;
+
+	state = get_philo_state_addr(philo);
+	time = get_philo_time_addr(philo);
+
+
 }
