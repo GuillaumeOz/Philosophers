@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/23 20:06:47 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/25 20:06:11 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int main(int argc, char **argv)
 	t_philo		*philo;
 	int			i;
 
+
 	time = malloc_time();
 	if (time->error_time == true)
 		return (quit_philo(ERROR_TIME, time, NULL, NULL));
@@ -67,27 +68,3 @@ int main(int argc, char **argv)
 	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }
-
-
-	// PRINTS("TIME STRUCTURE\n")
-	// PRINTS("\nStart_time\n")
-	// PRINTLD(get_time_start_time(state, PHILO))
-
-	// PRINTS("\nFirst_tick\n")
-	// PRINTLD(get_time_first_tick(state, FORK))
-	// PRINTS("\nSecond_tick\n")
-	// PRINTLD(get_time_second_tick(state))
-
-	// PRINTS("STATE STRUCTURE\n")
-	// PRINTS("\nnb_philo\n")
-	// PRINTD(get_state_nb_philo_fork(state, PHILO))
-	// PRINTS("\nnb_fork\n")
-	// PRINTD(get_state_nb_philo_fork(state, FORK))
-	// PRINTS("\ntime_to_die\n")
-	// PRINTD(get_state_time_to_die(state))
-	// PRINTS("\ntime_to_eat\n")
-	// PRINTD(get_state_time_to_eat(state))
-	// PRINTS("\ntime_to_sleep\n")
-	// PRINTD(get_state_time_to_sleep(state))
-	// PRINTS("\nnb_time_to_eat\n")
-	// PRINTD(get_state_nb_time_to_eat(state))

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/24 18:23:54 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/25 15:46:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@
 
 // DEL THIS PART
 
+/*
+** Constructor error handling
+*/
+
 typedef enum	e_error
 {
 	ERROR_TIME,
 	ERROR_STATE,
 	ERROR_PHILO,
-
 	NONE,
 }				t_error;
 
@@ -53,9 +56,11 @@ int				quit_philo(int code, t_time *time, t_state *state,
 size_t			ft_strlen(char *str);
 int				ft_atoi_philo(char *str, t_state *state);
 bool			ft_is_digit(char c);
-void			ft_putnbr(long nb);
+void			ft_putnbr(unsigned long nb, char *buff, size_t *i);
 void			ft_philo_msg(t_philo *philo, char *msg);
 
+void			sleeping(t_philo *philo);
+void			eating(t_philo *philo);
 void			*routine(void *param);
 void			start_philosopher(t_philo *philo);
 

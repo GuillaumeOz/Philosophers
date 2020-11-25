@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/23 18:49:09 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/25 16:23:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 	set_philo_id(philo, id);
 	set_philo_thread(philo);
 	set_philo_fork_mutex(philo);
-	set_philo_died(philo);
-	set_philo_error_philo(philo);
+	set_philo_died(philo, false);
+	set_philo_nb_eat(philo, 0);
+	philo->error_philo = false;
 	philo->nb_eat = 0;
 	philo->time = time;
 	philo->state = state;
