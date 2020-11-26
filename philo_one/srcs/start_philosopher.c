@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/25 20:06:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/26 20:06:45 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,23 @@
 
 extern bool g_over;
 
-void	*check_status(void *param)
+static	void	dead_setter(t_philo *philo)
+{
+	t_time *time;
+	long	value;
+
+	time = get_philo_time_addr(philo);
+	value = (get_philo_time_to_die(philo) - get_time_second_tick(time));
+	if (value <= 0)
+	{
+		set_philo_died(philo, true);
+		return ;
+	}
+	else
+		return ;
+}
+
+void			*check_status(void *param)
 {
 	t_philo	*philo;
 	t_state	*state;
@@ -29,10 +45,10 @@ void	*check_status(void *param)
 			return (NULL);
 		if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
 			g_over = true;
-		// add the philo dead checker function here
+		dead_setter(philo);
 		if (get_philo_died(philo) == true)
 		{
-			ft_philo_msg(philo, "died\n");
+			philo_msg(philo, "died\n");
 			g_over = true;
 		}
 		philo = get_philo_next_addr(philo);
@@ -40,7 +56,7 @@ void	*check_status(void *param)
 	return (param);
 }
 
-void	*routine(void *param)
+void			*routine(void *param)
 {
 	t_philo	*philo;
 
@@ -49,14 +65,15 @@ void	*routine(void *param)
 	{
 		if (g_over == true)
 			return (NULL);
-		ft_philo_msg(philo, "is thinking\n");
+		if (g_over == false)
+			philo_msg(philo, "is thinking\n");
 		eating(philo);
 		sleeping(philo);
 	}
 	return(param);
 }
 
-void	start_philosopher(t_philo *philo)
+void			start_philosopher(t_philo *philo)
 {
 	pthread_t	status;
 	t_state		*state;

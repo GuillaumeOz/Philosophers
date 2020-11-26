@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/25 15:46:21 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/26 20:01:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ size_t			ft_strlen(char *str);
 int				ft_atoi_philo(char *str, t_state *state);
 bool			ft_is_digit(char c);
 void			ft_putnbr(unsigned long nb, char *buff, size_t *i);
-void			ft_philo_msg(t_philo *philo, char *msg);
+void			philo_msg(t_philo *philo, char *msg);
 
 void			sleeping(t_philo *philo);
 void			eating(t_philo *philo);
+void			*check_status(void *param);
 void			*routine(void *param);
 void			start_philosopher(t_philo *philo);
 
