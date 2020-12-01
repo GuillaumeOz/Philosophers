@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 22:36:54 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 10:20:40 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int main(int argc, char **argv)
 	t_state		*state;
 	t_time		*time;
 	t_philo		*philo;
+	pthread_t	status;
 	int			i;
-
 
 	time = malloc_time();
 	if (time->error_time == true)
@@ -58,11 +58,11 @@ int main(int argc, char **argv)
 	philo = malloc_philo(time, state);
 	if (philo->error_philo == true)
 		return (quit_philo(ERROR_PHILO, time, state, philo));
-	start_philosopher(philo);
+	start_philosopher(philo, &status);
 	i = -1;
 	while (++i < get_state_nb_philo_fork(state, PHILO))
 	{
-		pthread_join(*(philo->thread), NULL);
+		pthread_join(*(get_philo_thread(philo)), NULL);
 		philo = get_philo_next_addr(philo);
 	}
 	quit_philo(EXIT_SUCCESS, time, state, philo);

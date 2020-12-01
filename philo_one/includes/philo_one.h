@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 20:01:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/11/30 15:07:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void			sleeping(t_philo *philo);
 void			eating(t_philo *philo);
 void			*check_status(void *param);
 void			*routine(void *param);
-void			start_philosopher(t_philo *philo);
+void			start_philosopher(t_philo *philo, pthread_t	*status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 20:06:45 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 10:20:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ static	void	dead_setter(t_philo *philo)
 void			*check_status(void *param)
 {
 	t_philo	*philo;
-	t_state	*state;
+	// t_state	*state;
 
 	philo = (t_philo*)param;
-	state = get_philo_state_addr(philo);
-	if (get_state_nb_time_to_eat(state) == 0)
-		g_over = true;
+	// state = get_philo_state_addr(philo);
+	// if (get_state_nb_time_to_eat(state) == 0)
+	// 	g_over = true;//OK
 	while (1)
 	{
 		if (g_over == true)
 			return (NULL);
-		if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
-			g_over = true;
+		// if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
+		// 	g_over = true;// OK
 		dead_setter(philo);
 		if (get_philo_died(philo) == true)
 		{
 			philo_msg(philo, "died\n");
-			g_over = true;
+			// g_over = true;//OK
 		}
 		philo = get_philo_next_addr(philo);
 	}
@@ -73,9 +73,8 @@ void			*routine(void *param)
 	return(param);
 }
 
-void			start_philosopher(t_philo *philo)
+void			start_philosopher(t_philo *philo, pthread_t	*status)
 {
-	pthread_t	status;
 	t_state		*state;
 	t_time		*time;
 	int			i;
@@ -84,8 +83,8 @@ void			start_philosopher(t_philo *philo)
 	time = get_philo_time_addr(philo);
 	state = get_philo_state_addr(philo);
 	set_time_first_tick(time);
-	pthread_create(&status, NULL, check_status, philo);
-	pthread_detach(status);
+	pthread_create(status, NULL, check_status, philo);
+	pthread_detach(*status);
 	while(++i < get_state_nb_philo_fork(state, PHILO))
 	{
 		pthread_create(get_philo_thread(philo), NULL, routine, philo);
