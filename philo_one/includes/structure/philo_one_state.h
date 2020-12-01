@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:51:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 22:19:03 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 16:59:44 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ typedef	struct	s_state
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_time_to_eat;
-	pthread_mutex_t *write_mutex;
+	pthread_mutex_t *write_mutex_one;
+	pthread_mutex_t *write_mutex_two;
+	bool			over;
 	bool			error_state;
 }				t_state;
 

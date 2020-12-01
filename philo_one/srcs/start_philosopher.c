@@ -6,13 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 10:20:33 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 17:12:42 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-extern bool g_over;
 
 static	void	dead_setter(t_philo *philo)
 {
@@ -33,23 +31,23 @@ static	void	dead_setter(t_philo *philo)
 void			*check_status(void *param)
 {
 	t_philo	*philo;
-	// t_state	*state;
+	t_state	*state;
 
 	philo = (t_philo*)param;
-	// state = get_philo_state_addr(philo);
-	// if (get_state_nb_time_to_eat(state) == 0)
-	// 	g_over = true;//OK
-	while (1)
+	state = get_philo_state_addr(philo);
+	if (get_state_nb_time_to_eat(state) == 0)
+		state->over = true;//OK
+	while (state->over == false)
 	{
-		if (g_over == true)
+		if (state->over == true)
 			return (NULL);
-		// if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
-		// 	g_over = true;// OK
+		if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
+			state->over = true;// OK
 		dead_setter(philo);
 		if (get_philo_died(philo) == true)
 		{
 			philo_msg(philo, "died\n");
-			// g_over = true;//OK
+			state->over = true;//OK
 		}
 		philo = get_philo_next_addr(philo);
 	}
@@ -59,13 +57,15 @@ void			*check_status(void *param)
 void			*routine(void *param)
 {
 	t_philo	*philo;
+	t_state	*state;
 
 	philo = (t_philo*)param;
-	while(1)
+	state = get_philo_state_addr(philo);
+	while(state->over == false)
 	{
-		if (g_over == true)
+		if (state->over == true)
 			return (NULL);
-		if (g_over == false)
+		if (state->over == false)
 			philo_msg(philo, "is thinking\n");
 		eating(philo);
 		sleeping(philo);
@@ -82,12 +82,13 @@ void			start_philosopher(t_philo *philo, pthread_t	*status)
 	i = -1;
 	time = get_philo_time_addr(philo);
 	state = get_philo_state_addr(philo);
-	set_time_first_tick(time);
 	pthread_create(status, NULL, check_status, philo);
-	pthread_detach(*status);
+	// pthread_detach(*status);
+	set_time_first_tick(time);
 	while(++i < get_state_nb_philo_fork(state, PHILO))
 	{
 		pthread_create(get_philo_thread(philo), NULL, routine, philo);
+		pthread_detach(*(get_philo_thread(philo)));
 		philo = get_philo_next_addr(philo);
 	}
 	return ;

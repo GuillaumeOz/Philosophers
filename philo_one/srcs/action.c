@@ -6,13 +6,12 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 10:18:54 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:31:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-extern bool g_over;
+#include <stdio.h>
 
 void		philo_msg(t_philo *philo, char *msg)
 {
@@ -34,13 +33,15 @@ void		philo_msg(t_philo *philo, char *msg)
 	buff[++i] = ' ';
 	while(msg[++j] != '\0')
 		buff[++i] = msg[j];
-	pthread_mutex_lock(state->write_mutex);
-	if (g_over == false)
+	pthread_mutex_lock(state->write_mutex_one);
+	usleep(1000);
+	if (state->over == false)
+	{
+		pthread_mutex_lock(state->write_mutex_two);
 		write(1, buff, ft_strlen(buff));
-	// if (get_philo_died(philo) == true)
-	// 	g_over = true;
-	if (get_philo_died(philo) != true)
-		pthread_mutex_unlock(state->write_mutex);
+		pthread_mutex_unlock(state->write_mutex_two);	
+	}
+	pthread_mutex_unlock(state->write_mutex_one);	
 }
 
 void			sleeping(t_philo *philo)
@@ -48,7 +49,7 @@ void			sleeping(t_philo *philo)
 	t_state	*state;
 
 	state = get_philo_state_addr(philo);
-	if (g_over == false)
+	if (state->over == false)
 	{
 		philo_msg(philo ,"is sleeping\n");
 		usleep(1000 * get_state_time_to_sleep(state));	
@@ -57,11 +58,14 @@ void			sleeping(t_philo *philo)
 
 static	void	taking_forks(t_philo *philo)
 {
+	t_state	*state;
+
+	state = get_philo_state_addr(philo);
 	pthread_mutex_lock(get_philo_fork(philo, RIGHT_FORK));
-	if (g_over == false)
+	if (state->over == false)
 		philo_msg(philo ,"has taken a fork\n");
 	pthread_mutex_lock(get_philo_fork(philo, LEFT_FORK));
-	if (g_over == false)
+	if (state->over == false)
 		philo_msg(philo ,"has taken a fork\n");
 }
 
@@ -76,14 +80,14 @@ void			eating(t_philo *philo)
 	t_state	*state;
 
 	state = get_philo_state_addr(philo);
-	taking_forks(philo);
-	if (g_over == false)
+	if (state->over == false)
 	{
+		taking_forks(philo);
 		philo_msg(philo ,"is eating\n");
 		set_philo_time_to_die(philo, get_state_time_to_die(state));
 		usleep(1000 * get_state_time_to_eat(state));
 		if (get_philo_nb_eat(philo) != -1)
-			set_philo_nb_eat(philo, 1);	
+			set_philo_nb_eat(philo, 1);
+		leaving_forks(philo);	
 	}
-	leaving_forks(philo);
 }

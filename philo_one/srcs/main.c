@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 10:20:40 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:19:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 // pthread_mutex_init, pthread_mutex_destroy,
 // pthread_mutex_lock, pthread_mutex_unlock
-
-bool	g_over = false;
 
 int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
@@ -47,7 +45,7 @@ int main(int argc, char **argv)
 	t_time		*time;
 	t_philo		*philo;
 	pthread_t	status;
-	int			i;
+	// int			i;
 
 	time = malloc_time();
 	if (time->error_time == true)
@@ -59,12 +57,14 @@ int main(int argc, char **argv)
 	if (philo->error_philo == true)
 		return (quit_philo(ERROR_PHILO, time, state, philo));
 	start_philosopher(philo, &status);
-	i = -1;
-	while (++i < get_state_nb_philo_fork(state, PHILO))
-	{
-		pthread_join(*(get_philo_thread(philo)), NULL);
-		philo = get_philo_next_addr(philo);
-	}
+	pthread_join(status, NULL);
+	// i = -1;
+	// while (++i < get_state_nb_philo_fork(state, PHILO))
+	// {
+	// 	// PRINTD(i)
+	// 	pthread_join(*(get_philo_thread(philo)), NULL);
+	// 	philo = get_philo_next_addr(philo);
+	// }
 	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }

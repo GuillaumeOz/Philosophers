@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 22:26:02 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/01 17:11:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,22 @@ t_state	*malloc_state(int argc, char **argv)
 
 void	create_state_write_mutex(t_state *state)
 {
-	state->write_mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
-	if (state->write_mutex == NULL)
+	state->write_mutex_one = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
+	if (state->write_mutex_one == NULL)
 	{
-		error_msg("Error: create_state_write_mutex malloc mutex failed");
+		error_msg("Error: create_state_write_mutex malloc mutex_one failed");
 		state->error_state = true;
 		return ;
 	}
-	pthread_mutex_init(state->write_mutex, NULL);
+	pthread_mutex_init(state->write_mutex_one, NULL);
+	state->write_mutex_two = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
+	if (state->write_mutex_two == NULL)
+	{
+		error_msg("Error: create_state_write_mutex malloc mutex_two failed");
+		state->error_state = true;
+		return ;
+	}
+	pthread_mutex_init(state->write_mutex_two, NULL);
 }
 
 t_state	create_state(int argc, char **argv)
@@ -55,6 +63,7 @@ t_state	create_state(int argc, char **argv)
 		else
 			state.nb_time_to_eat = -1;
 		create_state_write_mutex(&state);
+		state.over = false;
 	}
 	else
 	{
@@ -66,8 +75,10 @@ t_state	create_state(int argc, char **argv)
 
 void    destroy_state(t_state state)
 {
-	pthread_mutex_destroy(state.write_mutex);
-	free(state.write_mutex);
+	pthread_mutex_destroy(state.write_mutex_one);
+	free(state.write_mutex_one);
+	pthread_mutex_destroy(state.write_mutex_two);
+	free(state.write_mutex_two);
 	memset(&state, 0, sizeof(state));
 }
 
