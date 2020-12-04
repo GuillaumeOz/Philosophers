@@ -6,11 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 12:02:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:51:27 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 static	void	dead_setter(t_philo *philo)
 {

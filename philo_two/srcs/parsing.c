@@ -6,11 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:12:46 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 11:00:04 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:52:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 void	parse_philo(char *arg, t_state *state)
 {
