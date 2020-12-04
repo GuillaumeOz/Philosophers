@@ -6,11 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 12:18:28 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 11:13:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/02 13:51:10 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 size_t		ft_strlen(char *str)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one_time.h                                   :+:      :+:    :+:   */
+/*   philo_two_time.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:22:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 15:39:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/02 17:36:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_TIME_H
-# define PHILO_ONE_TIME_H
+#ifndef PHILO_TWO_TIME_H
+# define PHILO_TWO_TIME_H
 
 typedef struct		s_time
 {

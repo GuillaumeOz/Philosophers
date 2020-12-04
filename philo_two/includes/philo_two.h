@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 15:02:31 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/02 17:35:57 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_H
-# define PHILO_ONE_H
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
 #include <pthread.h>
+#include <semaphore.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -22,9 +23,13 @@
 #include <string.h>
 #include <inttypes.h>
 
-#include "philo_one_time.h"
-#include "philo_one_state.h"
-#include "philo_one_philo.h"
+# include <fcntl.h> /* Pour les constantes O_* */
+# include <sys/stat.h> /* Pour les constantes « mode » */
+// SEM_FAILED ((sem_t *) 0)
+
+#include "philo_two_time.h"
+#include "philo_two_state.h"
+#include "philo_two_philo.h"
 
 // DEL THIS PART
 
