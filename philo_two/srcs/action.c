@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 13:56:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/07 16:26:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void		philo_msg(t_philo *philo, char *msg)
 	buff[++i] = ' ';
 	while(msg[++j] != '\0')
 		buff[++i] = msg[j];
-	pthread_mutex_lock(state->write_mutex_one);
+	sem_wait(get_state_write_semaphore_one(state));
 	usleep(1000);
 	if (state->over == false)
 	{
-		pthread_mutex_lock(state->write_mutex_two);
+		sem_wait(get_state_write_semaphore_two(state));
 		write(1, buff, ft_strlen(buff));
-		pthread_mutex_unlock(state->write_mutex_two);	
+		sem_post(get_state_write_semaphore_two(state));	
 	}
-	pthread_mutex_unlock(state->write_mutex_one);	
+	sem_post(get_state_write_semaphore_one(state));	
 }
 
 void			sleeping(t_philo *philo)
@@ -60,13 +60,10 @@ static	void	taking_forks(t_philo *philo)
 	t_state	*state;
 
 	state = get_philo_state_addr(philo);
-	pthread_mutex_lock(get_philo_fork(philo, RIGHT_FORK));
+	sem_wait(get_state_fork_semaphore(state));
 	if (state->over == false)
 		philo_msg(philo ,"has taken a fork\n");
-	if (get_state_nb_philo_fork(state, PHILO) == 2)
-		pthread_mutex_lock(philo->fork_mutex);
-	else
-		pthread_mutex_lock(get_philo_fork(philo, LEFT_FORK));
+	sem_wait(get_state_fork_semaphore(state));
 	if (state->over == false)
 		philo_msg(philo ,"has taken a fork\n");
 }
@@ -76,11 +73,8 @@ static	void	leaving_forks(t_philo *philo)
 	t_state	*state;
 
 	state = get_philo_state_addr(philo);
-	pthread_mutex_unlock(get_philo_fork(philo, RIGHT_FORK));
-	if (get_state_nb_philo_fork(state, PHILO) == 2)
-		pthread_mutex_unlock(philo->fork_mutex);
-	else
-		pthread_mutex_unlock(get_philo_fork(philo, LEFT_FORK));
+	sem_post(get_state_fork_semaphore(state));
+	sem_post(get_state_fork_semaphore(state));
 }
 
 void			eating(t_philo *philo)
@@ -90,12 +84,16 @@ void			eating(t_philo *philo)
 	state = get_philo_state_addr(philo);
 	if (state->over == false)
 	{
+		if (get_state_nb_philo_fork(state, FORK) == 2)
+			sem_wait(get_state_fork_semaphore_priority(state));
 		taking_forks(philo);
 		philo_msg(philo ,"is eating\n");
 		set_philo_time_to_die(philo, get_state_time_to_die(state));
 		usleep(1000 * get_state_time_to_eat(state));
-		if (get_philo_nb_eat(philo) != -1)
+		if (get_state_nb_time_to_eat(state) != -1)
 			set_philo_nb_eat(philo, 1);
-		leaving_forks(philo);	
+		leaving_forks(philo);
+		if (get_state_nb_philo_fork(state, FORK) == 2)
+			sem_post(get_state_fork_semaphore_priority(state));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 13:55:47 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/07 14:14:40 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void			eating(t_philo *philo)
 		philo_msg(philo ,"is eating\n");
 		set_philo_time_to_die(philo, get_state_time_to_die(state));
 		usleep(1000 * get_state_time_to_eat(state));
-		if (get_philo_nb_eat(philo) != -1)
+		if (get_state_nb_time_to_eat(state) != -1)
 			set_philo_nb_eat(philo, 1);
 		leaving_forks(philo);	
 	}
