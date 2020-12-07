@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 13:58:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:47:32 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 {
 	philo->id = id;
 	set_philo_thread(philo);
-	set_philo_mutex(philo);
 	set_philo_died(philo, false);
 	set_philo_nb_eat(philo, 0);
 	philo->nb_eat = 0;
@@ -69,8 +68,7 @@ void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 void	destroy_philo(t_philo philo)
 {
 	free(philo.thread);
-	pthread_mutex_destroy(philo.fork_mutex);
-	free(philo.fork_mutex);
+	memset(&philo, 0, sizeof(t_philo));
 }
 
 void	free_philo(t_philo *philo)

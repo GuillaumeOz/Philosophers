@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_two_philo_getter.c                           :+:      :+:    :+:   */
+/*   philo_two_state_semaphore_getter.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 19:39:01 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/04 16:12:11 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/12/07 12:56:52 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/12/07 16:00:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-int				get_philo_id(t_philo *philo)
+sem_t	*get_state_fork_semaphore(t_state *state)
 {
-	return (philo->id);
+	return (state->fork_semaphore);
 }
 
-pthread_t		*get_philo_thread(t_philo *philo)
+sem_t	*get_state_fork_semaphore_priority(t_state *state)
 {
-	return (philo->thread);
+	return (state->fork_semaphore_priority);
 }
 
-bool 			get_philo_died(t_philo *philo)
+sem_t	*get_state_write_semaphore_one(t_state *state)
 {
-	return (philo->died);
+	return (state->write_semaphore_one);
 }
 
-int 			get_philo_nb_eat(t_philo *philo)
+sem_t	*get_state_write_semaphore_two(t_state *state)
 {
-	return (philo->nb_eat);
+	return (state->write_semaphore_two);
 }

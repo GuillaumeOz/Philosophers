@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:21:21 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 17:36:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/07 15:50:50 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ typedef struct	s_philo
 {
 	int				id;
 	pthread_t		*thread;
-	pthread_mutex_t	*fork_mutex;
 	int				nb_eat;
 	int				time_die;
 	bool			died;
@@ -27,16 +26,6 @@ typedef struct	s_philo
 	struct	s_philo	*next;
 	struct	s_philo *previous;
 }				t_philo;
-
-/*
-** Choice of fork
-*/
-
-typedef enum	e_fork_choice
-{
-	RIGHT_FORK,
-	LEFT_FORK,
-}				t_fork_choice;
 
 /*
 **	t_time Constructor - Destructor
@@ -55,7 +44,6 @@ void    		free_philo(t_philo *state);
 
 int				get_philo_id(t_philo *philo);
 pthread_t		*get_philo_thread(t_philo *philo);
-pthread_mutex_t	*get_philo_fork(t_philo *philo, t_fork_choice fork_choice);
 int				get_philo_nb_eat(t_philo *philo);
 int				get_philo_time_to_die(t_philo *philo);
 bool			get_philo_died(t_philo *philo);
@@ -67,7 +55,6 @@ t_philo			*get_philo_next_addr(t_philo *philo);
 bool			get_philo_error_philo(t_philo *philo);
 
 void			set_philo_thread(t_philo *philo);
-void			set_philo_mutex(t_philo *philo);
 void			set_philo_died(t_philo *philo, bool value);
 void			set_philo_time_to_die(t_philo *philo, int value);
 void			set_philo_nb_eat(t_philo *philo, int value);

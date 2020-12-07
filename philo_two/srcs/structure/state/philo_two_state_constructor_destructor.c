@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 18:51:40 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/07 16:05:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,6 @@ t_state	*malloc_state(int argc, char **argv)
 	return (state);
 }
 
-void	create_state_write_semaphore(t_state *state)
-{
-	state->write_semaphore_one = (sem_t*)malloc(sizeof(sem_t));
-	if (state->write_semaphore_one == NULL)
-	{
-		error_msg("Error: create_state_write_semaphore malloc semaphore_one failed");
-		state->error_state = true;
-		return ;
-	}
-	pthread_semaphore_init(state->write_semaphore_one, NULL);
-	state->write_semaphore_two = (sem_t*)malloc(sizeof(sem_t));
-	if (state->write_semaphore_two == NULL)
-	{
-		error_msg("Error: create_state_write_semaphore malloc semaphore_two failed");
-		state->error_state = true;
-		return ;
-	}
-	pthread_semaphore_init(state->write_mutex_two, NULL);
-}
-
 t_state	create_state(int argc, char **argv)
 {
 	t_state state;
@@ -62,7 +42,7 @@ t_state	create_state(int argc, char **argv)
 			parse_nb_time_to_eat(argv[5], &state);
 		else
 			state.nb_time_to_eat = -1;
-		create_state_write_semaphore(&state);
+		create_state_semaphore(&state);
 		state.over = false;
 	}
 	else
@@ -73,12 +53,18 @@ t_state	create_state(int argc, char **argv)
 	return(state);
 }
 
-void    destroy_state(t_state state)
+void	destroy_state(t_state state)
 {
-	pthread_mutex_destroy(state.write_mutex_one);
-	free(state.write_mutex_one);
-	pthread_mutex_destroy(state.write_mutex_two);
-	free(state.write_mutex_two);
+	sem_close(get_state_write_semaphore_one(&state));
+	sem_unlink("write_semaphore_one");
+	// free(state.write_semaphore_one);
+	sem_close(get_state_write_semaphore_two(&state));
+	sem_unlink("write_semaphore_two");
+	// free(state.write_semaphore_two);
+	sem_close(get_state_fork_semaphore(&state));
+	sem_unlink("fork_semaphore_priority");
+	sem_close(get_state_fork_semaphore(&state));
+	sem_unlink("fork_semaphore");
 	memset(&state, 0, sizeof(state));
 }
 

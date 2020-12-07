@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:39:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 13:58:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/04 16:22:12 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ void			set_philo_thread(t_philo *philo)
 		philo->error_philo = true;
 		return ;
 	}
-}
-
-void			set_philo_mutex(t_philo *philo)
-{
-	philo->fork_mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
-	if (philo->fork_mutex == NULL)
-	{
-		error_msg("Error: set_philo_mutex malloc mutex failed");
-		philo->error_philo = true;
-		return ;
-	}
-	pthread_mutex_init(philo->fork_mutex, NULL);
 }
 
 void			set_philo_died(t_philo *philo, bool value)
