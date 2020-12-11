@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:56:14 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 14:21:44 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_state	create_state(int argc, char **argv)
 		else
 			state.nb_time_to_eat = -1;
 		create_state_semaphore(&state);
+		create_state_pid(&state);
 		state.over = false;
 	}
 	else
@@ -55,6 +56,7 @@ t_state	create_state(int argc, char **argv)
 
 void	destroy_state(t_state state)
 {
+	free(state.pid);
 	sem_close(get_state_write_semaphore_one(&state));
 	sem_unlink("write_semaphore_one");
 	// free(state.write_semaphore_one);

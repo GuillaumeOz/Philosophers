@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:54:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 18:43:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static	void	dead_setter(t_philo *philo)
 {
-	t_time *time;
+	t_time	*time;
 	long	value;
 
 	time = get_philo_time_addr(philo);
@@ -33,6 +33,10 @@ void			*check_status(void *param)
 	t_philo	*philo;
 	t_state	*state;
 
+	// int		i;
+
+	// i = -1;
+
 	philo = (t_philo*)param;
 	state = get_philo_state_addr(philo);
 	if (get_state_nb_time_to_eat(state) == 0)
@@ -49,49 +53,53 @@ void			*check_status(void *param)
 			philo_msg(philo, "died\n");
 			state->over = true;// OK
 		}
-		philo = get_philo_next_addr(philo);
 	}
 	return (param);
 }
 
-void			*routine(void *param)
+void			routine(t_philo *philo, t_state *state, pthread_t *status)
 {
-	t_philo	*philo;
-	t_state	*state;
+	t_time		*time;
 
-	philo = (t_philo*)param;
-	state = get_philo_state_addr(philo);
+	time = get_philo_time_addr(philo);
+	set_time_first_tick(time);
+	pthread_create(status, NULL, check_status, philo);
+	pthread_detach(*status);
 	while(state->over == false)
 	{
 		if (get_state_nb_philo_fork(state, PHILO) > 1)
 		{
 			if (state->over == true)
-				return (NULL);
+				return ;
 			if (state->over == false)
 				philo_msg(philo, "is thinking\n");
 			eating(philo);
 			sleeping(philo);
 		}
 	}
-	return(param);
 }
 
 void			start_philosopher(t_philo *philo, pthread_t	*status)
 {
 	t_state		*state;
-	t_time		*time;
+	pid_t		ret;
 	int			i;
 
 	i = -1;
-	time = get_philo_time_addr(philo);
 	state = get_philo_state_addr(philo);
-	set_time_first_tick(time);
 	while(++i < get_state_nb_philo_fork(state, PHILO))
 	{
-		pthread_create(get_philo_thread(philo), NULL, routine, philo);
-		pthread_detach(*(get_philo_thread(philo)));
+		ret = fork();
+		if (ret < 0)
+			exit(-1);
+		if (ret != 0)
+			set_state_pid(state, ret, i);
+		if (ret == 0)
+		{
+			routine(philo, state, status);
+			exit(0);
+		}
 		philo = get_philo_next_addr(philo);
 	}
-	pthread_create(status, NULL, check_status, philo);
 	return ;
 }

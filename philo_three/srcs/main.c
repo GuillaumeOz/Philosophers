@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:52:08 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 18:44:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,23 @@ int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 	return (code);
 }
 
+void	kill_process(t_state *state)
+{
+	pid_t	ret;
+	int		i;
+
+	i = 0;
+	while (i < get_state_nb_philo_fork(state, PHILO))
+	{
+		ret = waitpid(get_state_pid(state, i), NULL, 0);
+		if (ret != get_state_pid(state, i))
+		{
+			kill(get_state_pid(state, i), 1);
+		}
+		i++;
+	}
+}
+
 void	error_msg(char *msg)
 {
 	size_t	len;
@@ -76,7 +93,7 @@ int main(int argc, char **argv)
 	if (philo->error_philo == true)
 		return (quit_philo(ERROR_PHILO, time, state, philo));
 	start_philosopher(philo, &status);
-	pthread_join(status, NULL);
+	kill_process(state);
 	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }

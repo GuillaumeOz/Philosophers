@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three_philo_getter.c                         :+:      :+:    :+:   */
+/*   philo_three_state_pid_constructor.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 19:39:01 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 13:45:55 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/12/11 14:10:57 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/12/11 14:42:34 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-int				get_philo_id(t_philo *philo)
+void	create_state_pid(t_state *state)
 {
-	return(philo->id);
-}
+	pid_t	*ret;
 
-bool 			get_philo_died(t_philo *philo)
-{
-	return (philo->died);
-}
-
-int 			get_philo_nb_eat(t_philo *philo)
-{
-	return (philo->nb_eat);
+	ret = (pid_t*)malloc(sizeof(pid_t) * get_state_nb_philo_fork(state, PHILO));
+	if (ret == NULL)
+	{
+		error_msg("Error: create_state_pid malloc pid failed");
+		state->error_state = true;
+		return ;
+	}
+	memset(ret, 0, sizeof(pid_t) * get_state_nb_philo_fork(state, PHILO));
+	state->pid = ret;
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:21:21 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:50:09 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 16:18:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 typedef struct	s_philo
 {
 	int				id;
-	pthread_t		*thread;
 	int				nb_eat;
 	int				time_die;
 	bool			died;
@@ -43,7 +42,6 @@ void    		free_philo(t_philo *state);
 */
 
 int				get_philo_id(t_philo *philo);
-pthread_t		*get_philo_thread(t_philo *philo);
 int				get_philo_nb_eat(t_philo *philo);
 int				get_philo_time_to_die(t_philo *philo);
 bool			get_philo_died(t_philo *philo);
@@ -54,7 +52,7 @@ t_philo			*get_philo_previous_addr(t_philo *philo);
 t_philo			*get_philo_next_addr(t_philo *philo);
 bool			get_philo_error_philo(t_philo *philo);
 
-void			set_philo_thread(t_philo *philo);
+void			set_philo_pid(t_philo *philo, pid_t value);
 void			set_philo_died(t_philo *philo, bool value);
 void			set_philo_time_to_die(t_philo *philo, int value);
 void			set_philo_nb_eat(t_philo *philo, int value);

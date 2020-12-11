@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three_philo_getter.c                         :+:      :+:    :+:   */
+/*   philo_three_state_pid_setter.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 19:39:01 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 13:45:55 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/12/11 14:05:57 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/12/11 14:07:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-int				get_philo_id(t_philo *philo)
+void    set_state_pid(t_state *state, pid_t value, int pos)
 {
-	return(philo->id);
-}
-
-bool 			get_philo_died(t_philo *philo)
-{
-	return (philo->died);
-}
-
-int 			get_philo_nb_eat(t_philo *philo)
-{
-	return (philo->nb_eat);
+    state->pid[pos] = value;
 }

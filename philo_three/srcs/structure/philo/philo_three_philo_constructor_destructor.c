@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:55:48 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 12:42:45 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	create_philo_link(t_philo **tmp, t_philo *philo)
 void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 {
 	philo->id = id;
-	set_philo_thread(philo);
 	set_philo_died(philo, false);
 	set_philo_nb_eat(philo, 0);
 	philo->nb_eat = 0;
@@ -67,7 +66,6 @@ void	create_philo(t_philo *philo, t_time *time, t_state *state, int id)
 
 void	destroy_philo(t_philo philo)
 {
-	free(philo.thread);
 	memset(&philo, 0, sizeof(t_philo));
 }
 

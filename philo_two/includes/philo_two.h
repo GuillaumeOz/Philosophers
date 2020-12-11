@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 14:39:48 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/09 11:35:44 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
+
+
 
 # include <fcntl.h> /* Pour les constantes O_* */
 # include <sys/stat.h> /* Pour les constantes « mode » */
