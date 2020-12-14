@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 18:43:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/14 19:20:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,10 @@ void			*check_status(void *param)
 	t_philo	*philo;
 	t_state	*state;
 
-	// int		i;
-
-	// i = -1;
-
 	philo = (t_philo*)param;
 	state = get_philo_state_addr(philo);
 	if (get_state_nb_time_to_eat(state) == 0)
-		state->over = true;//OK
+		return (NULL);
 	while (state->over == false)
 	{
 		if (state->over == true)
@@ -51,7 +47,10 @@ void			*check_status(void *param)
 		if (get_philo_died(philo) == true)
 		{
 			philo_msg(philo, "died\n");
+			sem_wait(get_state_write_semaphore_two(state));
 			state->over = true;// OK
+			kill(0, SIGINT);
+			exit(0);
 		}
 	}
 	return (param);
@@ -65,14 +64,11 @@ void			routine(t_philo *philo, t_state *state, pthread_t *status)
 	set_time_first_tick(time);
 	pthread_create(status, NULL, check_status, philo);
 	pthread_detach(*status);
-	while(state->over == false)
+	while(1)
 	{
 		if (get_state_nb_philo_fork(state, PHILO) > 1)
 		{
-			if (state->over == true)
-				return ;
-			if (state->over == false)
-				philo_msg(philo, "is thinking\n");
+			philo_msg(philo, "is thinking\n");
 			eating(philo);
 			sleeping(philo);
 		}

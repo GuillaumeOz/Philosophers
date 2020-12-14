@@ -6,38 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 18:44:04 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/14 19:18:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
-
-// memset, malloc, free, write, usleep, gettimeofday,
-
-// pthread_create, pthread_detach, pthread_join,
-
-// fork, kill, exit, waitpid,
-
-// sem_open, sem_close, sem_post, sem_wait, sem_unlink
-
-	/* Open a named semaphore NAME with open flags OFLAG.  */
-	// sem_open();
-
-	/* Close descriptor for named semaphore SEM.  */
-	// sem_close();
-
-	/* Post SEM.  */
-	// sem_post();
-
-	/* Wait for SEM being posted.
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-	// sem_wait();
-
-	/* Remove named semaphore NAME.  */
-	// sem_unlink();
-
-// sem_open, sem_close, sem_post, sem_wait, sem_unlink
 
 int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
@@ -58,13 +31,12 @@ void	kill_process(t_state *state)
 	i = 0;
 	while (i < get_state_nb_philo_fork(state, PHILO))
 	{
-		ret = waitpid(get_state_pid(state, i), NULL, 0);
+		waitpid(get_state_pid(state, i), &ret, 0);
 		if (ret != get_state_pid(state, i))
-		{
-			kill(get_state_pid(state, i), 1);
-		}
+			kill(get_state_pid(state, i), SIGKILL);
 		i++;
 	}
+	// sem_post(get_state_write_semaphore_two(state));
 }
 
 void	error_msg(char *msg)

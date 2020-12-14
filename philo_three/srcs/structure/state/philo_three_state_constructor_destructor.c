@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 14:21:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/14 19:13:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ void	destroy_state(t_state state)
 	free(state.pid);
 	sem_close(get_state_write_semaphore_one(&state));
 	sem_unlink("write_semaphore_one");
-	// free(state.write_semaphore_one);
 	sem_close(get_state_write_semaphore_two(&state));
 	sem_unlink("write_semaphore_two");
-	// free(state.write_semaphore_two);
 	sem_close(get_state_fork_semaphore(&state));
 	sem_unlink("fork_semaphore_priority");
 	sem_close(get_state_fork_semaphore(&state));

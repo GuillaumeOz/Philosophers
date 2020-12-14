@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 18:56:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/14 19:20:02 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ void		philo_msg(t_philo *philo, char *msg)
 		buff[++i] = msg[j];
 	sem_wait(get_state_write_semaphore_one(state));
 	usleep(1000);
-	// if((sem_wait(get_state_write_semaphore_two(state))) == 0)
-	// 	write(1, buff, ft_strlen(buff));
 	sem_wait(get_state_write_semaphore_two(state));
 	write(1, buff, ft_strlen(buff));
-	// if (get_philo_died(philo) != true)
-	sem_post(get_state_write_semaphore_two(state));	
-	sem_post(get_state_write_semaphore_one(state));	
+	sem_post(get_state_write_semaphore_two(state));
+	sem_post(get_state_write_semaphore_one(state));
 }
 
 void			sleeping(t_philo *philo)
@@ -51,8 +48,8 @@ void			sleeping(t_philo *philo)
 	if (state->over == false)
 	{
 		philo_msg(philo ,"is sleeping\n");
-		usleep(1000 * get_state_time_to_sleep(state));	
-	}
+		usleep(1000 * get_state_time_to_sleep(state));
+	}	
 }
 
 static	void	taking_forks(t_philo *philo)
@@ -85,7 +82,7 @@ void			eating(t_philo *philo)
 	if (state->over == false)
 	{
 		if (get_state_nb_philo_fork(state, FORK) == 2)
-			sem_wait(get_state_fork_semaphore_priority(state));
+			sem_wait(get_state_fork_semaphore_priority(state));		
 		taking_forks(philo);
 		philo_msg(philo ,"is eating\n");
 		set_philo_time_to_die(philo, get_state_time_to_die(state));
