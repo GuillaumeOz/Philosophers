@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three.h                                      :+:      :+:    :+:   */
+/*   philo_three_state_pid_getter.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/23 18:06:57 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/09/23 18:07:30 by gozsertt         ###   ########.fr       */
+/*   Created: 2020/12/11 13:55:39 by gozsertt          #+#    #+#             */
+/*   Updated: 2020/12/11 14:12:50 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_THREE_H
-# define PHILO_THREE_H
+#include "philo_three.h"
 
-#endif
+pid_t		get_state_pid(t_state *state, int pos)
+{
+	return (state->pid[pos]);
+}

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_two.h                                        :+:      :+:    :+:   */
+/*   philo_three.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/09 11:35:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/11 19:25:40 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_TWO_H
-# define PHILO_TWO_H
+#ifndef PHILO_THREE_H
+# define PHILO_THREE_H
 
 #include <pthread.h>
 #include <semaphore.h>
+#include <sys/types.h>
+#include <signal.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -24,14 +27,13 @@
 #include <inttypes.h>
 
 
-
 # include <fcntl.h> /* Pour les constantes O_* */
 # include <sys/stat.h> /* Pour les constantes « mode » */
 // SEM_FAILED ((sem_t *) 0)
 
-#include "philo_two_time.h"
-#include "philo_two_state.h"
-#include "philo_two_philo.h"
+#include "philo_three_time.h"
+#include "philo_three_state.h"
+#include "philo_three_philo.h"
 
 // DEL THIS PART
 
@@ -57,6 +59,7 @@ typedef enum	e_error
 }				t_error;
 
 void			error_msg(char *msg);
+void			kill_process(t_state *state);
 int				quit_philo(int code, t_time *time, t_state *state,
 					t_philo *philo);
 
@@ -69,7 +72,7 @@ void			philo_msg(t_philo *philo, char *msg);
 void			sleeping(t_philo *philo);
 void			eating(t_philo *philo);
 void			*check_status(void *param);
-void			*routine(void *param);
+void			routine(t_philo *philo, t_state *state, pthread_t *status);
 void			start_philosopher(t_philo *philo, pthread_t	*status);
 
 #endif
