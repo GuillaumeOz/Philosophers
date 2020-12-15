@@ -6,36 +6,25 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 15:02:31 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 18:09:20 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_ONE_H
 # define PHILO_ONE_H
 
-#include <pthread.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <sys/time.h>
-#include <stdio.h>
-#include <string.h>
-#include <inttypes.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <sys/time.h>
+# include <stdio.h>
+# include <string.h>
+# include <inttypes.h>
 
-#include "philo_one_time.h"
-#include "philo_one_state.h"
-#include "philo_one_philo.h"
-
-// DEL THIS PART
-
-# define DEBUG write(1, "ICI\n", 4);
-# define PRINTS(x) printf("%s\n", x);
-# define PRINTC(x) printf("%c\n", x);
-# define PRINTD(x) printf("%d\n", x);
-# define PRINTP(x) printf("%p\n", x);
-# define PRINTLD(x) printf("%ld\n", x);
-
-// DEL THIS PART
+# include "philo_one_time.h"
+# include "philo_one_state.h"
+# include "philo_one_philo.h"
 
 /*
 ** Constructor error handling

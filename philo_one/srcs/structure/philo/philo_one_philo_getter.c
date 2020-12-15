@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:39:01 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/04 16:12:01 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 18:22:50 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ pthread_mutex_t	*get_philo_fork(t_philo *philo, t_fork_choice fork_choice)
 		return (philo_left->fork_mutex);
 }
 
-bool 			get_philo_died(t_philo *philo)
+bool			get_philo_died(t_philo *philo)
 {
 	return (philo->died);
 }
 
-int 			get_philo_nb_eat(t_philo *philo)
+int				get_philo_nb_eat(t_philo *philo)
 {
 	return (philo->nb_eat);
 }

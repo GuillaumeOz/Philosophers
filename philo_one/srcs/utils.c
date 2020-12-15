@@ -6,15 +6,15 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 12:18:28 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 11:13:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 19:09:13 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-size_t		ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	size_t  len;
+	size_t	len;
 
 	len = 0;
 	while (str[len])
@@ -22,10 +22,10 @@ size_t		ft_strlen(char *str)
 	return (len);
 }
 
-int			ft_atoi_philo(char *str, t_state *state)
+int		ft_atoi_philo(char *str, t_state *state)
 {
-	int			i;
-	int			nb;
+	int	i;
+	int	nb;
 
 	i = 0;
 	nb = 0;
@@ -44,7 +44,7 @@ int			ft_atoi_philo(char *str, t_state *state)
 	return (nb);
 }
 
-bool		ft_is_digit(char c)
+bool	ft_is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (true);
@@ -62,4 +62,3 @@ void	ft_putnbr(unsigned long nb, char *buff, size_t *i)
 	else
 		buff[++(*i)] = nb + '0';
 }
-

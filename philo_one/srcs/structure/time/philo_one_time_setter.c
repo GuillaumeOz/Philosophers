@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 12:40:19 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/11/26 22:04:51 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 19:02:07 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			set_time_start_time(t_time *time)
 {
-	struct	timeval	get_time;
+	struct timeval	get_time;
 	int				state;
 
 	state = gettimeofday(&get_time, NULL);
@@ -23,13 +23,13 @@ void			set_time_start_time(t_time *time)
 		error_msg("Error: Time error\n");
 		time->error_time = true;
 	}
-	time->start_time = (get_time.tv_sec * 1000) 
+	time->start_time = (get_time.tv_sec * 1000)
 		+ (get_time.tv_usec / 1000);
 }
 
 void			set_time_first_tick(t_time *time)
 {
-	struct	timeval	get_time;
+	struct timeval	get_time;
 	int				state;
 
 	state = gettimeofday(&get_time, NULL);
@@ -38,13 +38,13 @@ void			set_time_first_tick(t_time *time)
 		error_msg("Error: Time error\n");
 		time->error_time = true;
 	}
-	time->first_tick = (get_time.tv_sec * 1000) 
+	time->first_tick = (get_time.tv_sec * 1000)
 		+ (get_time.tv_usec / 1000);
 }
 
 void			set_time_second_tick(t_time *time)
 {
-	struct	timeval	get_time;
+	struct timeval	get_time;
 	int				state;
 
 	state = gettimeofday(&get_time, NULL);

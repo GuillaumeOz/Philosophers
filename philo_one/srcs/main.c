@@ -6,18 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/02 12:13:06 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 19:04:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-// memset, malloc, free, write, usleep, gettimeofday,
-
-// pthread_create, pthread_detach, pthread_join,
-
-// pthread_mutex_init, pthread_mutex_destroy,
-// pthread_mutex_lock, pthread_mutex_unlock
 
 int		quit_philo(int code, t_time *time, t_state *state, t_philo *philo)
 {
@@ -39,13 +32,12 @@ void	error_msg(char *msg)
 	write(1, "\n", 1);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_state		*state;
 	t_time		*time;
 	t_philo		*philo;
 	pthread_t	status;
-	// int			i;
 
 	time = malloc_time();
 	if (time->error_time == true)
@@ -57,16 +49,7 @@ int main(int argc, char **argv)
 	if (philo->error_philo == true)
 		return (quit_philo(ERROR_PHILO, time, state, philo));
 	start_philosopher(philo, &status);
-
 	pthread_join(status, NULL);
-
-	// i = -1;
-	// while (++i < get_state_nb_philo_fork(state, PHILO))
-	// {
-	// 	// PRINTD(i)
-	// 	pthread_join(*(get_philo_thread(philo)), NULL);
-	// 	philo = get_philo_next_addr(philo);
-	// }
 	quit_philo(EXIT_SUCCESS, time, state, philo);
 	return (0);
 }

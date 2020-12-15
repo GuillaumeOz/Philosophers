@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/01 17:11:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/15 18:27:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ t_state	create_state(int argc, char **argv)
 		error_msg("Error: Arguments\n");
 		state.error_state = true;
 	}
-	return(state);
+	return (state);
 }
 
-void    destroy_state(t_state state)
+void	destroy_state(t_state state)
 {
 	pthread_mutex_destroy(state.write_mutex_one);
 	free(state.write_mutex_one);
@@ -82,7 +82,7 @@ void    destroy_state(t_state state)
 	memset(&state, 0, sizeof(state));
 }
 
-void    free_state(t_state *state)
+void	free_state(t_state *state)
 {
 	destroy_state(*state);
 	free(state);
