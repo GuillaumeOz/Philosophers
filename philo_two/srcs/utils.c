@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 12:18:28 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 13:51:10 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:39:55 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t		ft_strlen(char *str)
 {
-	size_t  len;
+	size_t len;
 
 	len = 0;
 	while (str[len])
@@ -24,8 +24,8 @@ size_t		ft_strlen(char *str)
 
 int			ft_atoi_philo(char *str, t_state *state)
 {
-	int			i;
-	int			nb;
+	int i;
+	int nb;
 
 	i = 0;
 	nb = 0;
@@ -52,7 +52,7 @@ bool		ft_is_digit(char c)
 		return (false);
 }
 
-void	ft_putnbr(unsigned long nb, char *buff, size_t *i)
+void		ft_putnbr(unsigned long nb, char *buff, size_t *i)
 {
 	if (nb >= 10)
 	{
@@ -62,4 +62,3 @@ void	ft_putnbr(unsigned long nb, char *buff, size_t *i)
 	else
 		buff[++(*i)] = nb + '0';
 }
-

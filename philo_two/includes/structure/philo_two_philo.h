@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:21:21 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 15:50:50 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:09:12 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct	s_philo
 	bool			error_philo;
 	t_time			*time;
 	t_state			*state;
-	struct	s_philo	*next;
-	struct	s_philo *previous;
+	struct s_philo	*next;
+	struct s_philo	*previous;
 }				t_philo;
 
 /*
@@ -35,8 +35,8 @@ t_philo			*malloc_philo(t_time *time, t_state *state);
 void			create_philo(t_philo *philo, t_time *time,
 					t_state *state, int id);
 void			create_philo_link(t_philo **tmp, t_philo *philo);
-void    		destroy_philo(t_philo state);
-void    		free_philo(t_philo *state);
+void			destroy_philo(t_philo state);
+void			free_philo(t_philo *state);
 
 /*
 **	t_state Getter - Setter

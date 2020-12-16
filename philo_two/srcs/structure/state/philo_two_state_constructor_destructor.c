@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 16:05:23 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:19:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,15 @@ t_state	create_state(int argc, char **argv)
 		error_msg("Error: Arguments\n");
 		state.error_state = true;
 	}
-	return(state);
+	return (state);
 }
 
 void	destroy_state(t_state state)
 {
 	sem_close(get_state_write_semaphore_one(&state));
 	sem_unlink("write_semaphore_one");
-	// free(state.write_semaphore_one);
 	sem_close(get_state_write_semaphore_two(&state));
 	sem_unlink("write_semaphore_two");
-	// free(state.write_semaphore_two);
 	sem_close(get_state_fork_semaphore(&state));
 	sem_unlink("fork_semaphore_priority");
 	sem_close(get_state_fork_semaphore(&state));
@@ -68,7 +66,7 @@ void	destroy_state(t_state state)
 	memset(&state, 0, sizeof(state));
 }
 
-void    free_state(t_state *state)
+void	free_state(t_state *state)
 {
 	destroy_state(*state);
 	free(state);

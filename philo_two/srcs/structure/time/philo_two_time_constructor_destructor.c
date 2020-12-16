@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 17:51:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/04 16:34:27 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:36:48 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_time	*malloc_time(void)
 	return (time);
 }
 
-t_time  create_time()
+t_time	create_time(void)
 {
 	t_time	time;
 
@@ -38,12 +38,12 @@ t_time  create_time()
 	return (time);
 }
 
-void    destroy_time(t_time time)
+void	destroy_time(t_time time)
 {
 	memset(&time, 0, sizeof(t_time));
 }
 
-void    free_time(t_time *time)
+void	free_time(t_time *time)
 {
 	destroy_time(*time);
 	free(time);

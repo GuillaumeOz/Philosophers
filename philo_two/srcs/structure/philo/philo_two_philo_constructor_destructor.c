@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 19:38:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/04 16:47:32 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:14:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_philo	*malloc_philo(t_time *time, t_state *state)
 
 	i = -1;
 	tmp = NULL;
-	while(++i < state->nb_philo)
+	while (++i < state->nb_philo)
 	{
 		philo = (t_philo*)malloc(sizeof(t_philo));
 		if (philo == NULL)
@@ -79,7 +79,7 @@ void	free_philo(t_philo *philo)
 
 	i = -1;
 	state = get_philo_state_addr(philo);
-	while(++i < get_state_nb_philo_fork(state, PHILO))
+	while (++i < get_state_nb_philo_fork(state, PHILO))
 	{
 		tmp = get_philo_next_addr(philo);
 		destroy_philo(*philo);

@@ -6,43 +6,28 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:10:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/09 11:35:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 13:06:51 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_TWO_H
 # define PHILO_TWO_H
 
-#include <pthread.h>
-#include <semaphore.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <sys/time.h>
-#include <stdio.h>
-#include <string.h>
-#include <inttypes.h>
+# include <pthread.h>
+# include <semaphore.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <sys/time.h>
+# include <stdio.h>
+# include <string.h>
+# include <inttypes.h>
+# include <fcntl.h>
+# include <sys/stat.h>
 
-
-
-# include <fcntl.h> /* Pour les constantes O_* */
-# include <sys/stat.h> /* Pour les constantes « mode » */
-// SEM_FAILED ((sem_t *) 0)
-
-#include "philo_two_time.h"
-#include "philo_two_state.h"
-#include "philo_two_philo.h"
-
-// DEL THIS PART
-
-# define DEBUG write(1, "ICI\n", 4);
-# define PRINTS(x) printf("%s\n", x);
-# define PRINTC(x) printf("%c\n", x);
-# define PRINTD(x) printf("%d\n", x);
-# define PRINTP(x) printf("%p\n", x);
-# define PRINTLD(x) printf("%ld\n", x);
-
-// DEL THIS PART
+# include "philo_two_time.h"
+# include "philo_two_state.h"
+# include "philo_two_philo.h"
 
 /*
 ** Constructor error handling
