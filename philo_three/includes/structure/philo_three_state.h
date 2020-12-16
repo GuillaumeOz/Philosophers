@@ -6,24 +6,12 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:51:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/11 14:40:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:03:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_THREE_STATE_H
 # define PHILO_THREE_STATE_H
-
-/*
-** - nb_philo && nb_fork : number of philosopher and forks.
-** - time_to_die : if a philosopher doesn't eat in "time_to_die" ms 
-** after begin to eat or starting prog, he die.
-** - time_to_eat : The time taken by a philosopher to eat 
-** (He keep two fork during this time).
-** - time_to_sleep : The time taken by a philosopher to sleep
-** - number_of_time_each_philosophers_must_eat : Optionnal, if all philosophers
-** had eat number_of..._eat the simulation stop. if this option is not specify, the
-** simulation end when a philosopher die.
-*/
 
 typedef	struct	s_state
 {
@@ -56,8 +44,8 @@ t_state			*malloc_state(int argc, char **argv);
 t_state			create_state(int argc, char **argv);
 void			create_state_semaphore(t_state *state);
 void			create_state_pid(t_state *state);
-void    		destroy_state(t_state state);
-void    		free_state(t_state *state);
+void			destroy_state(t_state state);
+void			free_state(t_state *state);
 
 /*
 **	t_state Parser

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 18:16:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/14 19:20:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 15:19:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void			*check_status(void *param)
 		if (state->over == true)
 			return (NULL);
 		if (get_state_nb_time_to_eat(state) == get_philo_nb_eat(philo))
-			state->over = true;// OK
+			state->over = true;
 		dead_setter(philo);
 		if (get_philo_died(philo) == true)
 		{
-			philo_msg(philo, "died\n");
+			philo_msg(philo, "died");
 			sem_wait(get_state_write_semaphore_two(state));
-			state->over = true;// OK
+			state->over = true;
 			kill(0, SIGINT);
 			exit(0);
 		}
@@ -64,7 +64,7 @@ void			routine(t_philo *philo, t_state *state, pthread_t *status)
 	set_time_first_tick(time);
 	pthread_create(status, NULL, check_status, philo);
 	pthread_detach(*status);
-	while(1)
+	while (1)
 	{
 		if (get_state_nb_philo_fork(state, PHILO) > 1)
 		{
@@ -75,7 +75,7 @@ void			routine(t_philo *philo, t_state *state, pthread_t *status)
 	}
 }
 
-void			start_philosopher(t_philo *philo, pthread_t	*status)
+void			start_philosopher(t_philo *philo, pthread_t *status)
 {
 	t_state		*state;
 	pid_t		ret;
@@ -83,7 +83,7 @@ void			start_philosopher(t_philo *philo, pthread_t	*status)
 
 	i = -1;
 	state = get_philo_state_addr(philo);
-	while(++i < get_state_nb_philo_fork(state, PHILO))
+	while (++i < get_state_nb_philo_fork(state, PHILO))
 	{
 		ret = fork();
 		if (ret < 0)

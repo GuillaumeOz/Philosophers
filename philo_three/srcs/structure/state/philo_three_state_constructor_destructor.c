@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/14 19:13:53 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:56:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_state	create_state(int argc, char **argv)
 		error_msg("Error: Arguments\n");
 		state.error_state = true;
 	}
-	return(state);
+	return (state);
 }
 
 void	destroy_state(t_state state)
@@ -68,7 +68,7 @@ void	destroy_state(t_state state)
 	memset(&state, 0, sizeof(state));
 }
 
-void    free_state(t_state *state)
+void	free_state(t_state *state)
 {
 	destroy_state(*state);
 	free(state);

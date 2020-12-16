@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:12:46 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/07 18:54:05 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 15:16:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	parse_time_to_sleep(char *arg, t_state *state)
 
 void	parse_nb_time_to_eat(char *arg, t_state *state)
 {
-	int	nb_time_to_eat;
 	int	i;
 
 	i = 0;
@@ -134,7 +133,6 @@ void	parse_nb_time_to_eat(char *arg, t_state *state)
 		state->error_state = true;
 		return ;
 	}
-	nb_time_to_eat = ft_atoi_philo(arg + 1, state);
-	set_state_nb_time_to_eat(state, nb_time_to_eat);
+	set_state_nb_time_to_eat(state, ft_atoi_philo(arg + 1, state));
 	return ;
 }

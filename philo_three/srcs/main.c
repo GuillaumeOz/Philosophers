@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 17:09:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/14 19:18:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:55:39 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	kill_process(t_state *state)
 			kill(get_state_pid(state, i), SIGKILL);
 		i++;
 	}
-	// sem_post(get_state_write_semaphore_two(state));
 }
 
 void	error_msg(char *msg)
@@ -48,7 +47,7 @@ void	error_msg(char *msg)
 	write(1, "\n", 1);
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_state		*state;
 	t_time		*time;
