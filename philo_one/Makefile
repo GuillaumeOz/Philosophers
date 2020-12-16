@@ -6,7 +6,7 @@
 #    By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/23 17:06:16 by gozsertt          #+#    #+#              #
-#    Updated: 2020/12/01 17:58:51 by gozsertt         ###   ########.fr        #
+#    Updated: 2020/12/16 16:47:34 by gozsertt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,21 @@ OBJ_DIR		=	obj
 
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
-SRC			= 	$(foreach dir, $(SRC_DIR), $(foreach file, $(wildcard $(dir)/*.c), $(notdir $(file))))
+SRC			= 	main.c										\
+				philo_one_state_constructor_destructor.c	\
+				philo_one_state_getter.c					\
+				philo_one_state_setter.c					\
+				philo_one_time_constructor_destructor.c		\
+				philo_one_time_getter.c						\
+				philo_one_time_setter.c						\
+				philo_one_philo_getter.c					\
+				philo_one_philo_address_getter.c			\
+				philo_one_philo_constructor_destructor.c	\
+				philo_one_philo_setter.c					\
+				utils.c										\
+				action.c									\
+				start_philosopher.c							\
+				parsing.c									\
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
