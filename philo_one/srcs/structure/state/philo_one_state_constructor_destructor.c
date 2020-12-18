@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 18:28:45 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/15 18:27:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/18 17:03:16 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,16 @@ t_state	create_state(int argc, char **argv)
 
 void	destroy_state(t_state state)
 {
-	pthread_mutex_destroy(state.write_mutex_one);
-	free(state.write_mutex_one);
-	pthread_mutex_destroy(state.write_mutex_two);
-	free(state.write_mutex_two);
+	if (state.write_mutex_one != NULL)
+	{
+		pthread_mutex_destroy(state.write_mutex_one);
+		free(state.write_mutex_one);
+	}
+	if (state.write_mutex_two != NULL)
+	{
+		pthread_mutex_destroy(state.write_mutex_two);
+		free(state.write_mutex_two);
+	}
 	memset(&state, 0, sizeof(state));
 }
 

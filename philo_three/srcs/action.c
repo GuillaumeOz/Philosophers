@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/16 15:15:11 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/18 17:09:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			philo_msg(t_philo *philo, char *msg)
 	while (msg[++j] != '\0')
 		buff[++i] = msg[j];
 	sem_wait(get_state_write_semaphore_one(state));
-	usleep(1000);
 	sem_wait(get_state_write_semaphore_two(state));
 	write(1, buff, ft_strlen(buff));
 	sem_post(get_state_write_semaphore_two(state));

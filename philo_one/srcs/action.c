@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:36:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2020/12/16 12:50:22 by gozsertt         ###   ########.fr       */
+/*   Updated: 2020/12/18 17:09:16 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			philo_msg(t_philo *philo, char *msg)
 	while (msg[++j] != '\0')
 		buff[++i] = msg[j];
 	pthread_mutex_lock(state->write_mutex_one);
-	usleep(1000);
 	pthread_mutex_lock(state->write_mutex_two);
 	write(1, buff, ft_strlen(buff));
 	pthread_mutex_unlock(state->write_mutex_two);
